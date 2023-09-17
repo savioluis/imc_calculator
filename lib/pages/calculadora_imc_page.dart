@@ -20,28 +20,7 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
   final TextEditingController alturaController = TextEditingController();
 
   String resultadoIMC = "";
-  String valorIMC = "";
-
-  String? pesoValidator(String? pesoInput) {
-    bool pesoValido = RegExp(r"^(?:\d+\.\d*|\.\d+|\d+)$").hasMatch(pesoInput!);
-
-    if (pesoInput.isEmpty || !pesoValido) {
-      return PesoInvalidoException().error();
-    }
-    return null;
-  }
-
-  String? alturaValidator(String? alturaInput) {
-    bool alturaValido =
-        RegExp(r"^(?:\d+\.\d*|\.\d+|\d+)$").hasMatch(alturaInput!);
-
-    if (alturaInput.isEmpty ||
-        double.parse(alturaInput) >= 3 ||
-        !alturaValido) {
-      return AlturaInvalidaException().error();
-    }
-    return null;
-  }
+  double valorIMC = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -76,16 +55,14 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
                       if (_formfield.currentState!.validate()) {
                         setState(() {
                           valorIMC = ImcFormula.calcularIMC(
-                                  double.parse(pesoController.value.text),
-                                  double.parse(alturaController.value.text))
-                              .toString();
+                              double.parse(pesoController.value.text),
+                              double.parse(alturaController.value.text));
 
-                          resultadoIMC =
-                              ImcFormula.resultadoIMC(double.parse(valorIMC));
+                          resultadoIMC = ImcFormula.resultadoIMC(valorIMC);
                         });
 
-                        print('peso ${pesoController.value.text}');
-                        print('altura ${alturaController.value.text}');
+                        print('peso: ${pesoController.value.text}');
+                        print('altura: ${alturaController.value.text}');
                         print(resultadoIMC);
 
                         pesoController.clear();
@@ -103,16 +80,26 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
                   height: 24,
                 ),
                 Text(
-                  "Resultado:",
+                  valorIMC == 0.0 ? "" : "Resultado: ",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(resultadoIMC),
-                    Text(valorIMC.toString()),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          valorIMC == 0.0 ? "" : "IMC: ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                            valorIMC == 0.0 ? "" : valorIMC.toStringAsFixed(2)),
+                      ],
+                    )
                   ],
-                )
+                ),
               ],
             ),
           ),
