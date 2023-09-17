@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:imc_calculator/exceptions/altura_invalida_exception.dart';
 import 'package:imc_calculator/exceptions/peso_invalido_exception.dart';
+import 'package:imc_calculator/pages/widgets/custom_large_button_widget.dart';
 import 'package:imc_calculator/utils/imc_formula.dart';
 
 import 'widgets/custom_text_field_widget.dart';
@@ -21,6 +22,25 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
 
   String resultadoIMC = "";
   double valorIMC = 0.0;
+
+  void _formValidate() {
+    if (_formfield.currentState!.validate()) {
+      setState(() {
+        valorIMC = ImcFormula.calcularIMC(
+            double.parse(pesoController.value.text),
+            double.parse(alturaController.value.text));
+
+        resultadoIMC = ImcFormula.resultadoIMC(valorIMC);
+      });
+
+      print('peso: ${pesoController.value.text}');
+      print('altura: ${alturaController.value.text}');
+      print(resultadoIMC);
+
+      pesoController.clear();
+      alturaController.clear();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,34 +67,8 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
                 SizedBox(
                   height: 24,
                 ),
-                SizedBox(
-                  height: 48,
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formfield.currentState!.validate()) {
-                        setState(() {
-                          valorIMC = ImcFormula.calcularIMC(
-                              double.parse(pesoController.value.text),
-                              double.parse(alturaController.value.text));
-
-                          resultadoIMC = ImcFormula.resultadoIMC(valorIMC);
-                        });
-
-                        print('peso: ${pesoController.value.text}');
-                        print('altura: ${alturaController.value.text}');
-                        print(resultadoIMC);
-
-                        pesoController.clear();
-                        alturaController.clear();
-                      }
-                    },
-                    child: Text(
-                      "Calcular IMC",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                CustomLargeButton(
+                  onPressed: _formValidate,
                 ),
                 SizedBox(
                   height: 24,
