@@ -5,6 +5,8 @@ import 'package:imc_calculator/exceptions/altura_invalida_exception.dart';
 import 'package:imc_calculator/exceptions/peso_invalido_exception.dart';
 import 'package:imc_calculator/utils/imc_formula.dart';
 
+import 'widgets/custom_text_field_widget.dart';
+
 class CalculadoraIMCPage extends StatefulWidget {
   const CalculadoraIMCPage({super.key});
 
@@ -18,6 +20,7 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
   final TextEditingController alturaController = TextEditingController();
 
   String resultadoIMC = "";
+  String valorIMC = "";
 
   String? pesoValidator(String? pesoInput) {
     bool pesoValido = RegExp(r"^(?:\d+\.\d*|\.\d+|\d+)$").hasMatch(pesoInput!);
@@ -29,9 +32,12 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
   }
 
   String? alturaValidator(String? alturaInput) {
-    bool alturaValido = RegExp(r"^(?:\d+\.\d*|\.\d+|\d+)$").hasMatch(alturaInput!);
+    bool alturaValido =
+        RegExp(r"^(?:\d+\.\d*|\.\d+|\d+)$").hasMatch(alturaInput!);
 
-    if (alturaInput.isEmpty || double.parse(alturaInput) >= 3 || !alturaValido) {
+    if (alturaInput.isEmpty ||
+        double.parse(alturaInput) >= 3 ||
+        !alturaValido) {
       return AlturaInvalidaException().error();
     }
     return null;
@@ -50,39 +56,15 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
             key: _formfield,
             child: Column(
               children: [
-                TextFormField(
-                  controller: pesoController,
-                  validator: (pesoInput) => pesoValidator(pesoInput),
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    labelText: "Peso (kg)",
-                    prefixIcon: Icon(Icons.accessibility_new_rounded),
-                    labelStyle: TextStyle(fontSize: 14),
-                    errorStyle: TextStyle(fontSize: 12),
-                  ),
-                  onTapOutside: (event) {
-                    FocusScope.of(context).unfocus();
-                  },
-                ),
+                CustomTextField(
+                    textController: pesoController,
+                    textFieldType: TextFieldType.peso),
                 SizedBox(
                   height: 24,
                 ),
-                TextFormField(
-                  controller: alturaController,
-                  validator: (alturaInput) => alturaValidator(alturaInput),
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    labelText: "Altura (m)",
-                    prefixIcon: Icon(Icons.height_rounded),
-                    labelStyle: TextStyle(fontSize: 14),
-                    errorStyle: TextStyle(fontSize: 12),
-                  ),
-                  onTapOutside: (event) {
-                    FocusScope.of(context).unfocus();
-                  },
-                ),
+                CustomTextField(
+                    textController: alturaController,
+                    textFieldType: TextFieldType.altura),
                 SizedBox(
                   height: 24,
                 ),
@@ -93,9 +75,13 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
                     onPressed: () {
                       if (_formfield.currentState!.validate()) {
                         setState(() {
-                          resultadoIMC = ImcFormula.resultadoIMC(
-                              double.parse(pesoController.value.text),
-                              double.parse(alturaController.value.text));
+                          valorIMC = ImcFormula.calcularIMC(
+                                  double.parse(pesoController.value.text),
+                                  double.parse(alturaController.value.text))
+                              .toString();
+
+                          resultadoIMC =
+                              ImcFormula.resultadoIMC(double.parse(valorIMC));
                         });
 
                         print('peso ${pesoController.value.text}');
@@ -120,8 +106,12 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
                   "Resultado:",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                Text(
-                  resultadoIMC,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(resultadoIMC),
+                    Text(valorIMC.toString()),
+                  ],
                 )
               ],
             ),
