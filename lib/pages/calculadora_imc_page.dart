@@ -19,7 +19,7 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
   final TextEditingController alturaController = TextEditingController();
 
   String resultadoIMC = "";
-  double valorIMC = 0.0;
+  double valorIMC = -1;
 
   void _formValidate() {
     if (_formfield.currentState!.validate()) {
@@ -72,7 +72,7 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
                   height: 24,
                 ),
                 Text(
-                  valorIMC == 0.0 ? "" : "Resultado: ",
+                  valorIMC == -1 ? "" : "Resultado: ",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Column(
@@ -83,11 +83,11 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          valorIMC == 0.0 ? "" : "IMC: ",
+                          valorIMC == -1 ? "" : "IMC: ",
                           style: TextStyle(fontWeight: FontWeight.bold)
                         ),
                         Text(
-                            valorIMC == 0.0 ? "" : valorIMC.toStringAsFixed(2)),
+                            valorIMC == -1 ? "" : valorIMC.toStringAsFixed(2)),
                       ],
                     )
                   ],

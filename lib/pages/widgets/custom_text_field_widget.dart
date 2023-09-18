@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
 
   String? pesoValidator(String? pesoInput) {
     bool pesoValido = RegExp(r"^(?:\d+\.\d*|\.\d+|\d+)$").hasMatch(pesoInput!);
+
     if (pesoInput.isEmpty || !pesoValido) {
       return PesoInvalidoException().message;
     }
@@ -26,8 +27,16 @@ class CustomTextField extends StatelessWidget {
   String? alturaValidator(String? alturaInput) {
     bool alturaValida =
         RegExp(r"^(?:\d+\.\d*|\.\d+|\d+)$").hasMatch(alturaInput!);
+    bool numeroPositivo;
 
-    if (alturaInput.isEmpty || !alturaValida) {
+    if (double.tryParse(alturaInput) == null ||
+        double.tryParse(alturaInput)! <= 0) {
+      numeroPositivo = false;
+    } else {
+      numeroPositivo = true;
+    }
+
+    if (alturaInput.isEmpty || !alturaValida || !numeroPositivo) {
       return AlturaInvalidaException().message;
     }
     return null;
