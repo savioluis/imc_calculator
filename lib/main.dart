@@ -5,16 +5,9 @@ void main() {
   runApp(const ImcCalculatorApp());
 }
 
-class ImcCalculatorApp extends StatefulWidget {
-  static TextEditingController pesoController = TextEditingController();
-  static TextEditingController alturaController = TextEditingController();
+class ImcCalculatorApp extends StatelessWidget {
   const ImcCalculatorApp({super.key});
 
-  @override
-  State<ImcCalculatorApp> createState() => _ImcCalculatorAppState();
-}
-
-class _ImcCalculatorAppState extends State<ImcCalculatorApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

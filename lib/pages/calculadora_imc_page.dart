@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:imc_calculator/exceptions/altura_invalida_exception.dart';
-import 'package:imc_calculator/exceptions/peso_invalido_exception.dart';
 import 'package:imc_calculator/pages/widgets/custom_large_button_widget.dart';
 import 'package:imc_calculator/utils/imc_formula.dart';
 
@@ -86,7 +84,7 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
                       children: [
                         Text(
                           valorIMC == 0.0 ? "" : "IMC: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold)
                         ),
                         Text(
                             valorIMC == 0.0 ? "" : valorIMC.toStringAsFixed(2)),
