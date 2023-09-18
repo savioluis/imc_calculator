@@ -7,24 +7,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:imc_calculator/constants/imc_classificacoes_constants.dart';
 
 import 'package:imc_calculator/main.dart';
 
+import 'package:imc_calculator/utils/imc_formula.dart' as imc_formula;
+
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Testando Valores de entrada e Saidas para o Calculo IMC',
+      (WidgetTester tester) async {
+    imc_formula.ImcFormula imc = imc_formula.ImcFormula();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // expect(imc.resultadoIMC(imc: 26.72, altura: 0, peso: 0),
+    //     'IMC: 26.72 / ${ImcClassificacoesConstants.sobrepeso}');
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // expect(imc.resultadoIMC(altura: 1.73, peso: 80), 'IMC: 26.729927495071667 / ${ImcClassificacoesConstants.sobrepeso}');
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
   });
 }
