@@ -1,16 +1,12 @@
-# imc_calculator
+# Calculadora de IMC em Flutter
 
-A new Flutter project.
+Este é um projeto de estudo em Flutter que implementa uma Calculadora de Índice de Massa Corporal (IMC). O IMC é uma medida comum para avaliar se uma pessoa está em um peso saudável de acordo com sua altura.
 
-## Getting Started
+## Funcionalidades
 
-This project is a starting point for a Flutter application.
+* **Cálculo do IMC:** A aplicação permite aos usuários inserir seu peso e altura e, em seguida, calcula automaticamente o IMC.
+* **Interpretação dos Resultados:** Além de calcular o IMC, o aplicativo fornece uma interpretação básica do estado de saúde com base nos valores comuns de IMC.
 
-A few resources to get you started if this is your first Flutter project:
+### Tabela de IMC utilizada
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Tabela IMC](https://guiatech.net/wp-content/uploads/2015/03/imc-classificacao.jpg)
