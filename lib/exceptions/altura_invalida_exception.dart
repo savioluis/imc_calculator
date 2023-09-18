@@ -1,8 +1,10 @@
 class AlturaInvalidaException implements Exception {
-  String error() => "Altura inválida";
+  final String message;
+
+  AlturaInvalidaException({this.message = "Altura inválida"});
 
   @override
   String toString() {
-    return "AlturaInvalidaException: ${error()}";
+    return "AlturaInvalidaException: $message";
   }
 }

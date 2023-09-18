@@ -1,8 +1,10 @@
 class PesoInvalidoException implements Exception {
-  String error() => "Peso inválido";
+  final String message;
+
+  PesoInvalidoException({this.message = "Peso inválido"});
 
   @override
   String toString() {
-    return "PesoInvalidoException: ${error()}";
+    return "PesoInvalidoException: $message";
   }
 }
