@@ -6,7 +6,7 @@ class SnackBarUtil {
     final snackBar = SnackBar(
       content: Text(
         text,
-        style: TextStyle(fontSize: 16),
+        style: const TextStyle(fontSize: 16),
       ),
       action: SnackBarAction(
         label: 'OK',

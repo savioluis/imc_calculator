@@ -17,7 +17,6 @@ class ImcCard extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: SizedBox(
         height: 64,
-        // width: MediaQuery.of(context).size.width,
         child: Card(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -30,9 +29,8 @@ class ImcCard extends StatelessWidget {
                   style: const TextStyle(fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(width: 16),
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
-                  // color: Colors.red,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -83,33 +81,29 @@ class ImcCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 28),
-                Container(
-                  // color: Colors.yellowAccent,
-                  // width: MediaQuery.of(context).size.width * 0.9,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          const Text(
-                            "IMC: ",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(imc.valor.toStringAsFixed(2))
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text(
-                            "Categoria: ",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(imc.categoria)
-                        ],
-                      ),
-                    ],
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        const Text(
+                          "IMC: ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(imc.valor.toStringAsFixed(2))
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          "Categoria: ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(imc.categoria)
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

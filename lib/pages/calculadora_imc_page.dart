@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:imc_calculator/model/imc_model.dart';
 import 'package:imc_calculator/pages/widgets/custom_large_button_widget.dart';
@@ -61,7 +59,7 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculadora IMC"),
+        title: const Text("Calculadora IMC"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -71,13 +69,13 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
           );
         },
         backgroundColor: Colors.blueAccent,
-        child: Icon(
+        child: const Icon(
           Icons.format_list_numbered_rounded,
         ),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 96),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 96),
           child: Form(
             key: _formfield,
             child: Column(
@@ -85,24 +83,24 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
                 CustomTextField(
                     textController: pesoController,
                     textFieldType: TextFieldType.peso),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
                 CustomTextField(
                     textController: alturaController,
                     textFieldType: TextFieldType.altura),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
                 CustomLargeButton(
                   onPressed: _formValidate,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
                 Text(
                   valorIMCTela == -1 ? "" : "Resultado: ",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,7 +110,7 @@ class _CalculadoraIMCPageState extends State<CalculadoraIMCPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(valorIMCTela == -1 ? "" : "IMC: ",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                            style: const TextStyle(fontWeight: FontWeight.bold)),
                         Text(valorIMCTela == -1
                             ? ""
                             : valorIMCTela.toStringAsFixed(2)),

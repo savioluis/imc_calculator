@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:imc_calculator/model/imc_model.dart';
-import 'package:imc_calculator/pages/widgets/custom_text_field_widget.dart';
 import 'package:imc_calculator/pages/widgets/imc_card.dart';
 
 class DialogsUtil {
@@ -12,7 +11,7 @@ class DialogsUtil {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            actionsPadding: EdgeInsets.all(8.0),
+            actionsPadding: const EdgeInsets.all(8.0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12.0),
             ),
@@ -26,8 +25,7 @@ class DialogsUtil {
                     "Nenhum IMC foi calculado ainda 🙄",
                     textAlign: TextAlign.center,
                   )
-                : Container(
-                    // color: Colors.yellowAccent,
+                : SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 2,
                     child: ListView.separated(
